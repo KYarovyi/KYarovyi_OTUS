@@ -12,6 +12,6 @@ deploy:
 provider: script
   skip_cleanup: true
   script:
-  - curl -T helloworld-0.0.1-Linux.deb -kyarovyi:$BINTRAY_API_KEY 
-  "https://api.bintray.com/content/kyarovyi/OTUS/Otus_Homework/0.0.1/helloworld-0.0.1-Linux.deb;
+  - curl -T helloworld-0.0.1-Linux.deb -ukyarovyi:$BINTRAY_API_KEY 
+  "https://api.bintray.com/kyarovyi/OTUS/Otus_Homework/0.0.1/helloworld-0.0.1-Linux.deb;
   deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
