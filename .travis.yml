@@ -9,9 +9,8 @@ script:
 - cmake --build . --target test
 - cmake --build . --target package
 deploy:
-provider: script
-  skip_cleanup: true
-  script:
-  - curl -T helloworld-0.0.1-Linux.deb -ukyarovyi:$BINTRAY_API_KEY 
-  "https://api.bintray.com/kyarovyi/OTUS/Otus_Homework/0.0.1/helloworld-0.0.1-Linux.deb;
-  deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  provider: bintray
+  file: "1.deb"
+  user: "kyarovyi"
+  key: $BINTRAY_API_KEY
+  skip_cleanup: true # to upload artifacts created during the build
