@@ -6,6 +6,7 @@ else()
     project(helloworld VERSION 0.0.1)
 endif()
 
+
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in version.h)
