@@ -10,7 +10,9 @@ script:
 - cmake --build . --target package
 deploy:
   provider: bintray
-  file: "1.deb"
+  file: "descriptor.json"
   user: "kyarovyi"
   key: $BINTRAY_API_KEY
   skip_cleanup: true # to upload artifacts created during the build
+    on:
+    all_branches: true
