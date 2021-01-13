@@ -3,10 +3,10 @@ before_script:
 - sudo apt-get install libboost-test-dev -y
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
-- sudo apt-get install libgtest-dev
+- sudo apt install libgtest-dev build-essential cmake
 - sudo apt-get install cmake
-- sudo cmake /usr/src/gtest/CMakeLists.txt
-- sudo make /usr/src/gtest
+- sudo cmake /usr/src/googletest
+- sudo cmake --build /usr/src/googletest --target install
 script:
 - cmake .
 - cmake --build .
