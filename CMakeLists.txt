@@ -8,8 +8,7 @@ endif()
 
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIR})
+find_package(GTest )
 
 configure_file(version.h.in version.h)
 
@@ -17,14 +16,9 @@ add_executable(helloworld_cli main.cpp)
 add_library(helloworld lib.cpp)
 include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(test_version test_version.cpp)
+add_executable(gtest_version gtest_version.cpp)
 
-
-
-add_executable( gtest_version gtest_version.cpp )
-
-target_link_libraries(gtest_version Threads::Threads GTest::Main helloworld)
-target_include_directories(gtest_version PRIVATE "${GTEST_INCLUDE_DIRS}")
-set_target_properties(helloworld_cli helloworld test_version gtest_version  PROPERTIES
+set_target_properties(helloworld_cli helloworld test_version gtest_version PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
@@ -43,12 +37,12 @@ target_link_libraries(test_version
     ${Boost_LIBRARIES}
     helloworld
 )
+target_include_directories(gtest_version PRIVATE "${GTEST_INCLUDE_DIRS}")
 
-
-#target_link_libraries(gtest_version
-#    ${GTEST_BOTH_LIBRARIES}
-#    helloworld
-#)
+target_link_libraries(gtest_version
+    ${GTEST_BOTH_LIBRARIES}
+    helloworld
+)
 
 if (MSVC)
     target_compile_options(helloworld_cli PRIVATE
@@ -86,7 +80,7 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
+enable_testing()
 
-
-add_test(test_version test_version)
+#add_test(test_version test_version)
 add_test(gtest_version gtest_version)
