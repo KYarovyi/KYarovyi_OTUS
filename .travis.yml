@@ -7,7 +7,7 @@ before_script:
 - sudo apt-get install cmake
 - cd /usr/src/gtest
 - sudo cmake .
-- sudo cmake --build 
+- sudo cmake --build .
 - cd -
 script:
 - cmake .
