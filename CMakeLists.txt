@@ -18,6 +18,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(test_version test_version.cpp)
 add_executable(gtest_version gtest_version.cpp)
 
+target_link_libraries(gtest_version Threads::Threads GTest::Main helloworld)
+target_include_directories(gtest_version PRIVATE "${GTEST_INCLUDE_DIRS}")
+
 set_target_properties(helloworld_cli helloworld test_version gtest_version PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
